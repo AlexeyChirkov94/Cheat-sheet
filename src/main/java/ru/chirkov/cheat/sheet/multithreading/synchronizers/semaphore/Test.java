@@ -11,7 +11,7 @@ public class Test {
         for (int i = 0; i < 200; i++) {
             executorService.submit(() -> {
                 try {
-                    connection.workNoLimit();
+                    connection.workWithLimit();
                 } catch (InterruptedException e) {}
             });
         }
