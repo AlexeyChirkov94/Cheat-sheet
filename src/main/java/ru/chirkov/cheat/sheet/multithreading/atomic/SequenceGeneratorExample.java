@@ -1,7 +1,8 @@
 package ru.chirkov.cheat.sheet.multithreading.atomic;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * В примере SequenceGeneratorExample сначала создается генератор последовательности SequenceGenerator.
@@ -9,30 +10,18 @@ import java.util.List;
  * генератору последовательсности.
  */
 public class SequenceGeneratorExample {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         SequenceGenerator sequenceGenerator = new SequenceGenerator();
-        List<Sequence> sequences = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Sequence seq = new Sequence(i + 1, 3, sequenceGenerator);
-            sequences.add(seq);
-        }
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+        for (int i = 1; i < 11; i++)
+            executorService.submit(new Sequence(i, 3, sequenceGenerator));
+
         System.out.println("\nРасчет последовательностей\n");
-        int summa;
-        // Ожидания завершения потоков
-        do {
-            summa = 0;
-            for (int i = 0; i < sequences.size(); i++) {
-                if (!sequences.get(i).thread.isAlive()) {
-                    sequences.get(i).printSequence();
-                    summa++;
-                }
-            }
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {}
-        } while (summa < sequences.size()) ;
+        executorService.shutdown();
+        executorService.awaitTermination(5, TimeUnit.SECONDS);
         System.out.println("\n\nРабота потоков завершена");
-        System.exit(0);
+
     }
 }

@@ -11,7 +11,6 @@ import java.util.List;
  * После завершения цикла значения последовательности «выводятся» в консоль методом printSequence.
  */
 class Sequence implements Runnable {
-    Thread thread;
     int id;    // просто идентификатор потока
     int count; // кол-во элементов в желаемой последовательности
     SequenceGenerator sequenceGenerator;
@@ -22,10 +21,7 @@ class Sequence implements Runnable {
         this.count = count;
         this.id = id;
         this.sequenceGenerator = sequenceGenerator;
-
-        thread = new Thread(this);
         System.out.println("Создан поток " + id);
-        thread.start();
     }
 
     @Override
