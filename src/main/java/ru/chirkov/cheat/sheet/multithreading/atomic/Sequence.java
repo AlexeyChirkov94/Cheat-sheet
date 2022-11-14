@@ -12,8 +12,8 @@ import java.util.List;
  */
 class Sequence implements Runnable {
     Thread thread;
-    int id;
-    int count;
+    int id;    // просто идентификатор потока
+    int count; // кол-во элементов в желаемой последовательности
     SequenceGenerator sequenceGenerator;
     List<BigInteger> sequence = new ArrayList<>();
     boolean printed = false;
@@ -32,7 +32,7 @@ class Sequence implements Runnable {
     public void run() {
         try {
             for (int i = 0; i < count; i++) {
-                sequence.add(sequenceGenerator.next());
+                sequence.add(sequenceGenerator.getNextValue());
                 Thread.sleep((long) ((Math.random()*2 + 1)*30));
             }
         } catch (InterruptedException e) {

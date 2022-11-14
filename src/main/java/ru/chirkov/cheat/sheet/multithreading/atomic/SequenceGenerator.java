@@ -5,22 +5,22 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Для работы в многопоточной среде без блокировок используем атомарную ссылку AtomicReference, которая обеспечит хранение
- * целочисленного значения типа java.math.BigInteger. Метод next возвращает текущее значение;
+ * целочисленного значения типа java.math.BigInteger. Метод getNextValue возвращает текущее значение и подготвалвивает следующее.
+ * Как getAndAdd класса AtomicLong
  * переменная next вычисляет следующее значение.
  * Метод compareAndSet атомарного класса element обеспечивает сохранение нового значения, если текущее не изменилось.
  * Таким образом, метод next возвращает текущее значение и увеличивает его в 2 раза.
  */
 public class SequenceGenerator {
 
-    private static BigInteger MULTIPLIER;
+    private static BigInteger MULTIPLIER = BigInteger.valueOf(2);
     private AtomicReference<BigInteger> element;
 
     public SequenceGenerator() {
-        if (MULTIPLIER == null) MULTIPLIER = BigInteger.valueOf(2);
         element = new AtomicReference<>(BigInteger.ONE);
     }
 
-    public BigInteger next() {
+    public BigInteger getNextValue() {
         BigInteger value;
         BigInteger next;
         do {
