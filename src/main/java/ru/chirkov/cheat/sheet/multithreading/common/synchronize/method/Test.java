@@ -55,3 +55,13 @@ public class Test {
     }
 
 }
+
+/**
+ * вывод в консоль:
+ *
+ * atomicCounter = 0
+ * intCounter    = 200000000
+ * spend time    = 3879
+ *
+ * Process finished with exit code 0
+ */

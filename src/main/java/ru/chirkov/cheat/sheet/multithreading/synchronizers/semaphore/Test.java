@@ -52,3 +52,29 @@ class Connection {
     }
 
 }
+
+/**
+ * вывод в консоль:
+ *
+ * connection Count = 2
+ * connection Count = 10
+ * connection Count = 5
+ * connection Count = 1
+ * connection Count = 4
+ * connection Count = 9
+ * connection Count = 7
+ * connection Count = 8
+ * connection Count = 3
+ * connection Count = 6
+ * connection Count = 2
+ * connection Count = 10
+ * connection Count = 9
+ * connection Count = 7
+ * connection Count = 8
+ * connection Count = 6
+ * connection Count = 5
+ * connection Count = 4
+ * connection Count = 3
+ * connection Count = 1
+ * ...
+ */

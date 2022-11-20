@@ -34,3 +34,13 @@ class MyThread extends Thread{
         }
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * Hello
+ * Hello
+ * <- (Me put Enter)
+ *
+ * Process finished with exit code 0
+ */

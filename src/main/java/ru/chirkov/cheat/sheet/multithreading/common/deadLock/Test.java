@@ -75,3 +75,11 @@ class Account {
     }
 }
 
+/**
+ * account 1 balance = 4302
+ * account 2 balance = 15698
+ * common balance = 20000
+ *
+ * Process finished with exit code 0
+ */
+

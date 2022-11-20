@@ -54,3 +54,10 @@ public class ThreadInterruption {
         mInc.interrupt();	//Инициация завершения побочного потока
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * Значение = 1 2 1 0 -1 -2 -1 0 1 2 3 4
+ * Process finished with exit code 0
+ */

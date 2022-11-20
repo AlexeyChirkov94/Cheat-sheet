@@ -20,3 +20,12 @@ public class FirstWayRun2Threads {			//Класс с методом main()
         System.out.println("Главный поток завершён...");
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * Главный поток завершён...
+ * Привет из побочного потока!
+ *
+ * Process finished with exit code 0
+ */

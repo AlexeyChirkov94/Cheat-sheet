@@ -40,3 +40,19 @@ class Processor implements Runnable {
         }
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * program is run,    time = 1668956040
+ * Thread 1 finished, time = 1668956043
+ * Thread 2 finished, time = 1668956043
+ * Thread 0 finished, time = 1668956043
+ * Thread 3 finished, time = 1668956046
+ * Thread 4 finished, time = 1668956046
+ * Thread 5 finished, time = 1668956046
+ * Thread 6 finished, time = 1668956049
+ * CountDownLatch is open now, time = 1668956049
+ *
+ * Process finished with exit code 0
+ */

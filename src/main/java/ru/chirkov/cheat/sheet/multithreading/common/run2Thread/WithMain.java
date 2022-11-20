@@ -41,3 +41,17 @@ class Runner implements Runnable {
     }
 
 }
+
+/**
+ * вывод в консоль:
+ *
+ * MyThread i=0
+ * MyThread i=0
+ * MyThread i=1
+ * MyThread i=1
+ * MyThread i=2
+ * MyThread i=2
+ * MyThread i=3
+ * MyThread i=3
+ * proceed working..
+ */

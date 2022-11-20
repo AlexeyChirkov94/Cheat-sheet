@@ -39,3 +39,17 @@ class Work implements Runnable{
     }
 
 }
+
+/**
+ * вывод в консоль:
+ *
+ * All tasks submitted, start execution
+ * Work 0 was completed, time = 1668956335
+ * Work 1 was completed, time = 1668956335
+ * Work 3 was completed, time = 1668956336
+ * Work 2 was completed, time = 1668956336
+ * Work 4 was completed, time = 1668956337
+ * Main thread stop waiting
+ *
+ * Process finished with exit code 0
+ */

@@ -37,3 +37,22 @@ public class Test {
         System.out.println("result is = " + result);
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * number is 6
+ * result is = 6
+ *
+ * Process finished with exit code 0
+ *
+ * ____________OR____________
+ *
+ * number is 4
+ * something went wrong
+ * exception was caught at main thread
+ * exception message = bad news
+ * result is = 0
+ *
+ * Process finished with exit code 0
+ */

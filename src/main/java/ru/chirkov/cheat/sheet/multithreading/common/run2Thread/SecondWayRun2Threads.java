@@ -21,3 +21,12 @@ public class SecondWayRun2Threads {
         System.out.println("Главный поток завершён...");
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * Главный поток завершён...
+ * Привет из побочного потока!
+ *
+ * Process finished with exit code 0
+ */

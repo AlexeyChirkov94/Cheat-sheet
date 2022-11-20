@@ -45,3 +45,11 @@ class Task {
     }
 
 }
+
+/**
+ * вывод в консоль:
+ *
+ * counter = 20000
+ *
+ * Process finished with exit code 0
+ */

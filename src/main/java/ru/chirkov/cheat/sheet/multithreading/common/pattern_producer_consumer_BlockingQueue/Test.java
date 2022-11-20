@@ -52,3 +52,24 @@ public class Test {
         }
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * 89
+ * Queue size is 10
+ * 44
+ * Queue size is 10
+ * 36
+ * Queue size is 10
+ * 11
+ * Queue size is 10
+ * 1
+ * Queue size is 10
+ * 97
+ * Queue size is 10
+ * 92
+ * Queue size is 10
+ *
+ * proceed working..
+ */

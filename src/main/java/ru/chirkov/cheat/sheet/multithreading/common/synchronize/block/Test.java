@@ -78,3 +78,13 @@ class Worker {
         System.out.println("List2 : " + list2.size());
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * working time = 2901 ms
+ * List1 : 2000
+ * List2 : 2000
+ *
+ * Process finished with exit code 0
+ */

@@ -1,7 +1,6 @@
 package ru.chirkov.cheat.sheet.multithreading.sandbox;
 
-class EggVoice extends Thread
-{
+class EggVoice extends Thread  {
     @Override
     public void run()
     {
@@ -48,3 +47,23 @@ public class ChickenVoice {	//Класс с методом main()
         System.out.println("Спор закончен!");
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * Спор начат...
+ * курица!
+ * яйцо!
+ * курица!
+ * яйцо!
+ * яйцо!
+ * курица!
+ * яйцо!
+ * курица!
+ * яйцо!
+ * курица!
+ * Первой появилась курица!
+ * Спор закончен!
+ *
+ * Process finished with exit code 0
+ */

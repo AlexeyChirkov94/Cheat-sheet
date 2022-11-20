@@ -75,3 +75,9 @@ class ProducerConsumer {
         }
     }
 }
+
+/**
+ * вывод в консоль:
+ * wait forever
+ * something wrong here
+ */

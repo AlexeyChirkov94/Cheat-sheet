@@ -50,3 +50,17 @@ class WaitAndNotify {
         Thread.sleep(5000); // эти 5 сек не ждет, выполняется сразу. (т.к. эта часть метода не синхронизированна)
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * Producer thread started
+ * Waiting for return key pressed
+ * <- (Me put Enter)
+ *
+ * this.notify()
+ * Producer thread resume
+ *
+ *
+ * Process finished with exit code 0
+ */

@@ -32,3 +32,13 @@ public class OneMoreExample {
 
     }
 }
+
+/**
+ * вывод в консоль:
+ *
+ * start,          timme: 1668956694
+ * was interapted, timme: 1668956696
+ * was interapted, timme: 1668956697
+ * was interapted, timme: 1668956698
+ * ... proceed working
+ */
