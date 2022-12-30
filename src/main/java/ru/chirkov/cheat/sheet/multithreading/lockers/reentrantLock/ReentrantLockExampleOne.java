@@ -3,7 +3,7 @@ package ru.chirkov.cheat.sheet.multithreading.lockers.reentrantLock;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Test {
+public class ReentrantLockExampleOne {
     public static void main(String[] args) throws InterruptedException {
         Task task = new Task();
         Thread thread1 = new Thread(task::threadOne);
