@@ -3,6 +3,7 @@ package ru.chirkov.cheat.sheet.multithreading.callable.future;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.Future;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
@@ -26,8 +27,9 @@ public class CallableFutureExample {
         List<Future<String>>  futures = new ArrayList<>(); // Список ассоциированных с Callable задач Future
         Callable<String> callable = new CallableClass(); // Создание экземпляра Callable класса
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 7; i++) {
             Future<String> future = executor.submit(callable);
+            if (i == 3) future.cancel(true);
             futures.add(future);
         }
         executor.shutdown();
@@ -35,7 +37,9 @@ public class CallableFutureExample {
         for (Future<String> future : futures){ //выводим результаты
             try {
                 System.out.println(new SimpleDateFormat("HH:mm:ss  ").format(new Date()) + future.get());
-            } catch (InterruptedException | ExecutionException e) {}
+            } catch (InterruptedException | ExecutionException | CancellationException e) {
+                System.out.println("something went wronggg..");
+            }
         }
 
     }
@@ -53,7 +57,13 @@ public class CallableFutureExample {
 /**
  * вывод в консоль:
  *
- * 16:17:54  pool-1-thread-1
- * 16:17:56  pool-1-thread-2
- * 16:17:56  pool-1-thread-3
+ * 22:01:10  pool-1-thread-1
+ * 22:01:12  pool-1-thread-2
+ * 22:01:12  pool-1-thread-3
+ * something went wronggg..
+ * 22:01:12  pool-1-thread-3
+ * 22:01:14  pool-1-thread-1
+ * 22:01:14  pool-1-thread-2
+ *
+ * Process finished with exit code 0
  */

@@ -1,5 +1,6 @@
 package ru.chirkov.cheat.sheet.multithreading.collections;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -38,6 +39,7 @@ public class ConcurrentHashMapExample {
             String key = it.next(); // Место ошибки, т.к. итератор вызывает исключение при обращении к следующему объекту, если набор изменился.
             if (key.equals("2")) {
                 map.put(key + "new", "222");
+                System.out.print("  " + key + "=" + map.get(key));
             } else
                 System.out.print("  " + key + "=" + map.get(key));
         }
@@ -60,7 +62,7 @@ public class ConcurrentHashMapExample {
         map.put("4", "1");
         map.put("5", "1");
         map.put("6", "1");
-        return map;
+        return Collections.synchronizedMap(map); // с обычной map ведет себя так-же
     }
 
 }
@@ -70,12 +72,12 @@ public class ConcurrentHashMapExample {
  *
  * ConcurrentHashMap
  *   before iterator : {1=1, 2=1, 3=1, 4=1, 5=1, 6=1}
- *   cycle :   1=1  3=1  4=1  5=1  6=1  2new=222
+ *   cycle :   1=1  2=1  3=1  4=1  5=1  6=1  2new=222
  *   after iterator : {1=1, 2=1, 3=1, 4=1, 5=1, 6=1, 2new=222}
  *
  * HashMap
  *   before iterator : {1=1, 2=1, 3=1, 4=1, 5=1, 6=1}
- *   cycle :   1=1Exception in thread "main" java.util.ConcurrentModificationException
+ *   cycle :   1=1  2=1Exception in thread "main" java.util.ConcurrentModificationException
  * 	at java.base/java.util.HashMap$HashIterator.nextNode(HashMap.java:1493)
  * 	at java.base/java.util.HashMap$KeyIterator.next(HashMap.java:1516)
  * 	at ru.chirkov.cheat.sheet.multithreading.collections.ConcurrentHashMapExample.addValue(ConcurrentHashMapExample.java:38)
