@@ -1,4 +1,4 @@
-package ru.chirkov.cheat.sheet.multithreading.lockers.reentrantLock;
+package ru.chirkov.cheat.sheet.multithreading.lockers;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

@@ -1,4 +1,4 @@
-package ru.chirkov.cheat.sheet.multithreading.lockers.reentrantLock;
+package ru.chirkov.cheat.sheet.multithreading.lockers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
