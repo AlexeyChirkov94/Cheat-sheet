@@ -16,14 +16,13 @@ public class TimeBudget {
     public List<TravelQuote> getRankedTravelQuotes(TravelInfo travelInfo, Set<TravelCompany> companies,
                                                    Comparator<TravelQuote> ranking, long time, TimeUnit unit)
             throws InterruptedException {
-        List<QuoteTask> tasks = new ArrayList<QuoteTask>();
+        List<QuoteTask> tasks = new ArrayList<>();
         for (TravelCompany company : companies)
             tasks.add(new QuoteTask(company, travelInfo));
 
         List<Future<TravelQuote>> futures = exec.invokeAll(tasks, time, unit);
 
-        List<TravelQuote> quotes =
-                new ArrayList<TravelQuote>(tasks.size());
+        List<TravelQuote> quotes = new ArrayList<>(tasks.size());
         Iterator<QuoteTask> taskIter = tasks.iterator();
         for (Future<TravelQuote> f : futures) {
             QuoteTask task = taskIter.next();
@@ -36,7 +35,7 @@ public class TimeBudget {
             }
         }
 
-        Collections.sort(quotes, ranking);
+        quotes.sort(ranking);
         return quotes;
     }
 
