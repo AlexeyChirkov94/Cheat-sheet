@@ -18,6 +18,9 @@ import java.text.SimpleDateFormat;
  * как можно, используя Future, узнать статус Callable потока и получить возвращенный объект.
  * В примере используется объект executor типа ExecutorService, формирующий пул из трех потоков.
  * Метод submit с параметром Callable возвращает объект Future для каждого из стартуемого потоков.
+ *
+ * Позже в пример были добавлены примеры прервывания переданой потребителю задачи и вывоз исключения внутри выполняемой задачи.
+ * Обратите внимание размер пула потоков не имзенился в обоих сценариях.
  */
 public class CallableFutureExample {
 
@@ -25,11 +28,11 @@ public class CallableFutureExample {
 
         ExecutorService executor = Executors.newFixedThreadPool(3);  // Определяем пул из трех потоков
         List<Future<String>>  futures = new ArrayList<>(); // Список ассоциированных с Callable задач Future
-        Callable<String> callable = new CallableClass(); // Создание экземпляра Callable класса
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 10; i++) {
+            Callable<String> callable = new CallableClass(i); // Создание экземпляра Callable класса
             Future<String> future = executor.submit(callable);
-            if (i == 3) future.cancel(true);
+            if (i == 3) future.cancel(true); // можно прирвать и запущеную задачу (замени 3 на 1)
             futures.add(future);
         }
         executor.shutdown();
@@ -45,9 +48,17 @@ public class CallableFutureExample {
     }
 
     static class CallableClass implements Callable<String> { // Класс, реализующий интерфейс Callable
+
+        private final int i;
+
+        CallableClass(int i) {
+            this.i = i;
+        }
+
         @Override
         public String call() throws Exception {
             Thread.sleep(2000);
+            if (i == 4) throw new RuntimeException("ooops");
             return Thread.currentThread().getName(); // наименование потока, выполняющего callable задачу
         }
     }
@@ -57,13 +68,16 @@ public class CallableFutureExample {
 /**
  * вывод в консоль:
  *
- * 22:01:10  pool-1-thread-1
- * 22:01:12  pool-1-thread-2
- * 22:01:12  pool-1-thread-3
+ * 13:21:43  pool-1-thread-1
+ * 13:21:45  pool-1-thread-2
+ * 13:21:45  pool-1-thread-3
  * something went wronggg..
- * 22:01:12  pool-1-thread-3
- * 22:01:14  pool-1-thread-1
- * 22:01:14  pool-1-thread-2
+ * something went wronggg..
+ * 13:21:47  pool-1-thread-2
+ * 13:21:47  pool-1-thread-3
+ * 13:21:47  pool-1-thread-1
+ * 13:21:49  pool-1-thread-2
+ * 13:21:49  pool-1-thread-3
  *
  * Process finished with exit code 0
  */

@@ -21,7 +21,7 @@ public class LogService {
     @GuardedBy("this") private int reservations;
 
     public LogService(Writer writer) {
-        this.queue = new LinkedBlockingQueue<String>();
+        this.queue = new LinkedBlockingQueue<>();
         this.loggerThread = new LoggerThread();
         this.writer = new PrintWriter(writer);
     }
@@ -39,8 +39,7 @@ public class LogService {
 
     public void log(String msg) throws InterruptedException {
         synchronized (this) {
-            if (isShutdown)
-                throw new IllegalStateException(/*...*/);
+            if (isShutdown) throw new IllegalStateException("log is shut down");
             ++reservations;
         }
         queue.put(msg);
@@ -60,7 +59,7 @@ public class LogService {
                             --reservations;
                         }
                         writer.println(msg);
-                    } catch (InterruptedException e) { /* retry */
+                    } catch (InterruptedException e) { //игнорируме и продолжаем крутиться в while пока не запишем все сообщения из очереди
                     }
                 }
             } finally {

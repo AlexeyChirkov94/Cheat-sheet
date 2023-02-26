@@ -27,7 +27,7 @@ class Runner {
     public void firstThread() {
         for (int i =0 ; i< 10000; i++) {
             getLocks(lock1, lock2);
-                    Account.transferMoney(account1, account2, random.nextInt(100));
+            Account.transferMoney(account1, account2, random.nextInt(100));
             lock1.unlock();
             lock2.unlock();
         }
@@ -36,7 +36,7 @@ class Runner {
     public void secondThread() {
         for (int i =0 ; i< 10000; i++) {
             getLocks(lock2, lock1);
-                    Account.transferMoney(account2, account1, random.nextInt(100));
+            Account.transferMoney(account2, account1, random.nextInt(100));
             lock1.unlock();
             lock2.unlock();
         }
