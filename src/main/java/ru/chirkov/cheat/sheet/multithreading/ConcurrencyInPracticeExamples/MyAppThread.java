@@ -24,14 +24,13 @@ public class MyAppThread extends Thread {
     public MyAppThread(Runnable runnable, String name) {
         super(runnable, name + "-" + created.incrementAndGet());
         setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-            public void uncaughtException(Thread t,
-                                          Throwable e) {
-                log.log(Level.SEVERE,
-                        "UNCAUGHT in thread " + t.getName(), e);
+            public void uncaughtException(Thread t, Throwable e) {
+                log.log(Level.SEVERE, "UNCAUGHT in thread " + t.getName(), e);
             }
         });
     }
 
+    @Override
     public void run() {
         // Copy debug flag to ensure consistent value throughout.
         boolean debug = debugLifecycle;
