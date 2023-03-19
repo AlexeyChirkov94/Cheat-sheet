@@ -10,9 +10,17 @@ import java.util.concurrent.*;
  * @author Brian Goetz and Tim Peierls
  */
 public class ThreadDeadlock {
-    ExecutorService exec = Executors.newSingleThreadExecutor();
 
-    public class LoadFileTask implements Callable<String> {
+    public static void main(String[] args) throws Exception {
+        RenderPageTask renderPageTask = new RenderPageTask();
+        String call = renderPageTask.call();
+        System.out.println(call);
+    }
+
+
+    static ExecutorService exec = Executors.newSingleThreadExecutor();
+
+    public static class LoadFileTask implements Callable<String> {
         private final String fileName;
 
         public LoadFileTask(String fileName) {
@@ -21,15 +29,16 @@ public class ThreadDeadlock {
 
         public String call() throws Exception {
             // Here's where we would actually read the file
-            return "";
+            return fileName + "-loaded";
         }
     }
 
-    public class RenderPageTask implements Callable<String> {
+    public static class RenderPageTask implements Callable<String> {
         public String call() throws Exception {
             Future<String> header, footer;
-            header = exec.submit(new LoadFileTask("header.html"));
+//            header = exec.submit(new LoadFileTask("header.html"));
             footer = exec.submit(new LoadFileTask("footer.html"));
+            header = exec.submit(new LoadFileTask("header.html"));
             String page = renderBody();
             // Will deadlock -- task waiting for result of subtask
             return header.get() + page + footer.get();
@@ -37,7 +46,7 @@ public class ThreadDeadlock {
 
         private String renderBody() {
             // Here's where we would actually render the page
-            return "";
+            return " boby ";
         }
     }
 }

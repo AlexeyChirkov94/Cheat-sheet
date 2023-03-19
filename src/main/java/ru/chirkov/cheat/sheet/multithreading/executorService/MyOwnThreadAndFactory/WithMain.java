@@ -1,7 +1,6 @@
 package ru.chirkov.cheat.sheet.multithreading.executorService.MyOwnThreadAndFactory;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +27,7 @@ public class WithMain {
             if (i == 10) {
                 System.out.println("\t SLEEP 10s!!");
                 Thread.sleep(10_000L);
+                System.out.println("\t WAKE UP! \n");
             }
         }
 
